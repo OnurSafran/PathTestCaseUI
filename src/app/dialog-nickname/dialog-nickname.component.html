@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Hi User</h1>
+<div mat-dialog-content>
+  <p>What is your nickname ?</p>
+  <mat-form-field style="width: 100%">
+    <input matInput [(ngModel)]="user.nickName">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="this.login()" style="margin: auto">Enter</button>
+</div>
