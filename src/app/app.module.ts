@@ -19,6 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {LoadingComponent} from './loading/loading.component';
 import {UserService} from './services/user.service';
 import {LoadingService} from './services/loading.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {LoadingService} from './services/loading.service';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [RoomService, UserService, LoadingService],
   bootstrap: [AppComponent]
