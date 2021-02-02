@@ -1,6 +1,8 @@
 import {Message} from './message';
+import {UserInfo} from './user-info';
 
 export class Room {
   roomId: string;
-  messageList: Message[];
+  title: string;
+  messages: Message[];
 }

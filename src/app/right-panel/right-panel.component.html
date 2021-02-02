@@ -1,1 +1,26 @@
-<p>right-panel works!</p>
+<p>
+  <button class="button" mat-raised-button color="warn" (click)="chatService.logout()">{{chatService.connected.getValue() ? 'Logout' : 'Login'}}<span class="material-icons">login</span></button>
+</p>
+
+<p>
+<mat-card>
+  <mat-card-header class="header-card">
+    <mat-card-title >Rooms</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let room of rooms;">
+        <button mat-raised-button color="primary" class="button" (click)="enterToRoom(room.roomId)" style="margin: auto; font-size: 1.5rem">
+          {{room.title}} <span class="material-icons">chat</span>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+</p>
+
+<p>
+  <mat-toolbar>
+    <span>Hoşgeldin {{chatService.currentUser.nickName}}</span>
+  </mat-toolbar>
+</p>

@@ -8,6 +8,10 @@ const routes: Routes = [
     path: 'main',
     component: MainScreenComponent,
   },
+  {
+    path: '',
+    component: MainScreenComponent,
+  },
   {path: '**', component: PageNotFoundComponent}
 ];
 

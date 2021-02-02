@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {User} from '../model/user';
+import {UserInfo} from '../model/user-info';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ChatService} from '../services/chat.service';
 
 @Component({
   selector: 'app-dialog-nickname',
@@ -9,7 +10,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 })
 export class DialogNicknameComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DialogNicknameComponent>, @Inject(MAT_DIALOG_DATA) public user: User) {
+  constructor(public dialogRef: MatDialogRef<DialogNicknameComponent>, @Inject(MAT_DIALOG_DATA) public user: UserInfo, private chatService: ChatService) {
     dialogRef.disableClose = true;
   }
 
@@ -21,6 +22,6 @@ export class DialogNicknameComponent implements OnInit {
       return;
     }
 
-    this.dialogRef.close();
+    this.chatService.startConnection(this.user.nickName);
   }
 }

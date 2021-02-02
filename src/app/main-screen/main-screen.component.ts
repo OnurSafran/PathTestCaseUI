@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {RoomService} from '../services/room.service';
-import {User} from '../model/user';
+import {UserInfo} from '../model/user-info';
 import {Room} from '../model/room';
 import {DialogNicknameComponent} from '../dialog-nickname/dialog-nickname.component';
-import {UserService} from '../services/user.service';
+import {ChatService} from '../services/chat.service';
 
 @Component({
   selector: 'app-main-screen',
@@ -13,35 +12,48 @@ import {UserService} from '../services/user.service';
 })
 export class MainScreenComponent implements OnInit {
 
-  user: User;
+  user: UserInfo;
   activeRoom: Room;
+  public dialogActive = false;
 
-  constructor(private roomService: RoomService, private userService: UserService, private dialog: MatDialog) {
-    this.user = new User();
+  constructor(public chatService: ChatService, private dialog: MatDialog) {
+    this.user = new UserInfo();
     this.user.nickName = '';
+
+    this.chatService.connected.subscribe((data) => {
+      if (!data) {
+        this.openDialog();
+      } else {
+        this.closeDialog();
+      }
+    });
   }
 
   ngOnInit(): void {
-    this.openDialog();
+
   }
 
   openDialog(): void {
+    if (this.dialogActive) {
+      return;
+    }
+
     const dialogRef = this.dialog.open(DialogNicknameComponent, {
       width: '250px',
       data: this.user,
       disableClose: true
     });
 
+    this.dialogActive = true;
+
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
 
-      this.login();
+      this.dialogActive = false;
     });
   }
 
-  login(): void {
-    this.userService.login(this.user).subscribe(() => {
-      console.log('login');
-    });
+  closeDialog(): void {
+    this.dialog.closeAll();
   }
 }

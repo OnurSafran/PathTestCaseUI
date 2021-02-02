@@ -1,6 +1,8 @@
-import {User} from './user';
+import {UserInfo} from './user-info';
 
 export class Message {
-  sender: User;
+  senderNickName: string;
   message: string;
+  dateTime: Date;
+  isAnnouncement: boolean;
 }

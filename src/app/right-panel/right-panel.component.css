@@ -1,0 +1,9 @@
+.header-card {
+  justify-content: center;
+  border-bottom-style: groove;
+}
+
+.button {
+  justify-content: center;
+  width: 100%
+}
